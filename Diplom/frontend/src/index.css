@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
+
+body {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+  color: #3498db;
+}
+
+a:hover {
+  color: #217dbb;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+}
+
+button {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+/* Материалы курса */
+.materials-container {
+  margin-top: 20px;
+}
+
+.material-section {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.video-field {
+  width: 100%;
+  max-height: 400px;
+  border-radius: 5px;
+}
+
+.presentation-link {
+  display: inline-block;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  width: 100%;
+  font-weight: 600;
+}
+
+.presentation-link:hover {
+  background-color: #0056b3;
+}
+
+.lecture-text {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.test-button {
+  display: inline-block;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  width: 100%;
+  font-weight: 600;
+}
+
+.test-button:hover {
+  background-color: #218838;
+}
+
+.comment-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.send-button {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.send-button:hover {
+  background-color: #e68900;
+}
+
+.success-message {
+  color: green;
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.progress-container {
+  margin-top: 20px;
+  padding: 15px;
+  border: 2px solid #4caf50;
+  border-radius: 5px;
+  background-color: #e8f5e9;
+  font-weight: 600;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #ddd;
+}
+
+.navbar h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.navbar .profile-menu {
+  margin-left: auto;
+}
