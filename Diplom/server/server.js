@@ -17,7 +17,7 @@ app.post('/api/login', (req, res) => {
   const { email } = req.body;
 
   // Всегда успешный ответ
-  res.json({ 
+  res.json({
     user: {
       id: "123456",
       name: "Demo User",
