@@ -1,0 +1,100 @@
+.settings-wrapper {
+    max-width: 480px;
+    margin: 40px auto;
+    padding: 32px;
+    font-family: "Segoe UI", sans-serif;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.avatar {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+}
+
+.circle {
+    width: 100px;
+    height: 100px;
+    background-color: #444;
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #444;
+    color: white;
+    font-size: 13px;
+    padding: 5px;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    margin-bottom: 12px;
+}
+
+.input-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.secondary-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.delete-button {
+    margin-top: 30px;
+    background-color: #fff;
+    color: #d32f2f;
+    border: 2px solid #d32f2f;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.delete-button:hover {
+    background-color: #d32f2f;
+    color: #fff;
+}

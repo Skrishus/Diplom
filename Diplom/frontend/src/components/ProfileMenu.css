@@ -1,49 +1,72 @@
 .profile-menu {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end; 
+  position: relative;
+  display: inline-block;
 }
-  
-  .profile-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid #555;
-  }
-  
-  .dropdown {
-    position: absolute;
-    top: 50px;
-    right: 0;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    padding: 10px;
-    text-align: left;
-    z-index: 100;
-  }
-  
-  .dropdown p {
-    margin: 5px 0;
-  }
-  
-  .dropdown a, .dropdown button {
-    display: block;
-    width: 100%;
-    text-align: left;
-    padding: 8px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    color: #333;
-    text-decoration: none;
-  }
-  
-  .dropdown a:hover, .dropdown button:hover {
-    background: #f0f0f0;
-  }
-  
+
+
+
+.avatar-wrapper {
+  cursor: pointer;
+}
+
+.avatar-circle {
+  width: 40px;
+  height: 40px;
+  background-color: #4a90e2;
+  /* Синий цвет */
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  z-index: 999;
+  width: 220px;
+}
+
+.dropdown p {
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+.dropdown hr {
+  margin: 10px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+.dropdown a,
+.dropdown button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  color: #333;
+  text-decoration: none;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.dropdown a:hover,
+.dropdown button:hover {
+  background-color: #f5f5f5;
+  border-radius: 6px;
+}

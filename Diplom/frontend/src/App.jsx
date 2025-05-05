@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import Courses from "./pages/Courses";
@@ -9,6 +9,7 @@ import Profile from "./pages/Profile";
 import Payment from "./pages/Payment";
 import CourseDetails from "./components/Materials";
 import NotFound from "./pages/NotFound";
+import SettingsPage from "./pages/Settings";
 import "./index.css";
 
 function App() {
@@ -24,17 +25,25 @@ function App() {
   return (
     <>
       <nav className="navbar">
-        <h2>AgroInnova</h2>
-        {user && <ProfileMenu user={user} setUser={setUser} />}
+        <h2>
+          <Link to="/" className="logo-link">AgroInnova</Link>
+        </h2>
+        {user && (
+          <>
+            <ProfileMenu user={user} setUser={setUser} />
+          </>
+        )}
       </nav>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/courses" element={<Courses user={user} />} />
-        <Route path="/login" element={<Login setUser={setUser} />} /> 
+        <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/register" element={<Register setUser={setUser} />} />
         <Route path="/profile" element={<Profile user={user} />} />
         <Route path="/payment" element={<Payment user={user} setUser={setUser} />} />
         <Route path="/courses/:id" element={<CourseDetails />} />
+        <Route path="/settings" element={<SettingsPage user={user} />} /> {/* 👈 Добавлен маршрут */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

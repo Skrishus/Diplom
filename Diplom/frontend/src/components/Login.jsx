@@ -18,7 +18,7 @@ function Login({ setUser }) {
     }
 
     try {
-      const response = await fetch('http://localhost:5001/api/login', { // Изменен порт на 5001
+      const response = await fetch('http://localhost:5001/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -27,10 +27,25 @@ function Login({ setUser }) {
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem("user", JSON.stringify(data.user));
-        setUser(data.user);
+        const first = data.user.firstName || '';
+        const last = data.user.lastName || '';
+        const initials =
+          (first[0] || '').toUpperCase() + (last[0] || '').toUpperCase();
+
+        const updatedUser = {
+          name: initials,
+          firstName: data.user.firstName,
+          lastName: data.user.lastName,
+          email: data.user.email,
+          color: data.user.color,          // ✅ сохраняем цвет
+          paidCourses: []                  // ✅ если ты используешь это поле
+        };
+
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+        setUser(updatedUser);
         navigate('/courses');
-      } else {
+      }
+      else {
         setError(data.message);
       }
     } catch (err) {
@@ -40,30 +55,34 @@ function Login({ setUser }) {
   };
 
   return (
-    <div className="login-container">
-      <h2>Вход</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Пароль"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          minLength={6}
-          required
-        />
-        {error && <p className="error-message">{error}</p>}
-        <button type="submit">Войти</button>
-      </form>
+    <div className="login-wrapper">
+      <div className="login-container">
+        <h2>Добро пожаловать!</h2>
+        <form onSubmit={handleLogin}>
+          <input
+            type="email"
+            placeholder="Введите email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Введите пароль"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          {error && <div className="error-message">{error}</div>}
+
+          <div className="login-actions">
+            <button type="submit" className="login-button">Войти</button>
+            <span className="forgot-password">Забыли пароль?</span>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
 
 export default Login;
-

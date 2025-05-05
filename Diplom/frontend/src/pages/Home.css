@@ -1,26 +1,129 @@
-.home-container {
-    text-align: center;
-    padding: 50px;
-  }
-  
-  .button-group {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .btn {
-    padding: 12px 24px;
-    background-color: #5a8f2c;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: background 0.3s;
-  }
-  
-  .btn:hover {
-    background-color: #5a8f2c7c;
-  }
-  
+:root {
+  --main-green: #2e7d32;
+  --light-green: #a5d6a7;
+  --bg-color: #f5fdf6;
+  --white: #ffffff;
+  --gray: #444;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+}
+
+.home-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  /* чтобы .home-auth-floating была позиционируема */
+}
+
+/* 🌿 Кнопки Вход / Регистрация справа сверху */
+.home-auth-floating {
+  position: absolute;
+  top: 20px;
+  right: 60px;
+  display: flex;
+  gap: 20px;
+  z-index: 999;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--main-green);
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #1b5e20;
+  text-shadow: 0 0 2px rgba(46, 125, 50, 0.4);
+}
+
+
+.home-body {
+  flex-grow: 1;
+  position: relative;
+  background-image: url('/images/farm-bg.jpg');
+
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.background-overlay {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 60px 40px;
+  border-radius: 20px;
+  max-width: 800px;
+  margin: 40px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.hero-title {
+  font-size: 42px;
+  color: var(--main-green);
+  margin-bottom: 20px;
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  color: var(--gray);
+  margin-bottom: 35px;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cta-btn {
+  background-color: var(--main-green);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+  background-color: #1b5e20;
+  transform: scale(1.05);
+}
+
+.cta-secondary {
+  background-color: transparent;
+  color: var(--main-green);
+  border: 2px solid var(--main-green);
+}
+
+.cta-secondary:hover {
+  background-color: var(--light-green);
+}
+
+/* 🔻 Footer */
+.home-footer {
+  background-color: var(--white);
+  text-align: center;
+  padding: 20px;
+  color: #1b5e20;
+  font-size: 14px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.home-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
