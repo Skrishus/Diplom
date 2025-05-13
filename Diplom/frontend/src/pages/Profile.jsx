@@ -1,45 +1,53 @@
+// Profile.jsx
 import './Profile.css';
+import { useEffect, useState } from 'react';
 
-function Profile({ user }) {
-  const initials = `${user.firstName?.[0] || ''}${user.lastName?.[0] || ''}`.toUpperCase();
-  const avatarColor = user.color || '#4a90e2';
+function Profile() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem('user'));
+    setUser(stored);
+  }, []);
+
+  if (!user) return <div className="profile-wrapper">Загрузка...</div>;
+
+  const initials = `${user.firstName[0] || ''}${user.lastName[0] || ''}`.toUpperCase();
 
   return (
-    <div className="profile-page">
-      <h2>Профиль</h2>
+    <div className="profile-wrapper">
+      <div className="profile-card">
+        <div
+          className="profile-avatar"
+          style={{
+            backgroundColor: user.avatarImage ? 'transparent' : user.color || '#888',
+            backgroundImage: user.avatarImage ? `url(${user.avatarImage})` : 'none',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          {!user.avatarImage && `${user.firstName[0] || ''}${user.lastName[0] || ''}`.toUpperCase()}
+        </div>
 
-      {/* ✅ Обертка для центрирования аватара */}
-      <div className="profile-avatar-wrapper">
-        <div className="profile-avatar" style={{ backgroundColor: avatarColor }}>
-          {initials}
+        <div className="profile-info">
+          <h2>{user.firstName} {user.lastName}</h2>
+          <p className="email">{user.email}</p>
         </div>
       </div>
 
-      {/* Оставляем поля как есть */}
-      <div className="profile-info">
-        <div className="profile-field">
-          <label>Имя</label>
-          <input type="text" value={user.firstName || ''} readOnly />
-        </div>
+      <div className="info-card">
+        <h3>Профиль</h3>
+        <ul>
+          <li><strong>Имя:</strong> {user.firstName}</li>
+          <li><strong>Фамилия:</strong> {user.lastName}</li>
+          <li><strong>Email:</strong> {user.email}</li>
+          <li><strong>Дата регистрации:</strong> {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : '—'}</li>
+          <li><strong>Последний вход:</strong> {user.lastLogin ? new Date(user.lastLogin).toLocaleDateString() : '—'}</li>
 
-        <div className="profile-field">
-          <label>Фамилия</label>
-          <input type="text" value={user.lastName || ''} readOnly />
-        </div>
-
-        <div className="profile-field">
-          <label>Электронная почта</label>
-          <input type="text" value={user.email || ''} readOnly />
-        </div>
-      </div>
-
-      <div className="profile-courses">
-        <h3>Курсы</h3>
-        <p className="no-courses">Курсы не найдены</p>
+        </ul>
       </div>
     </div>
   );
 }
 
 export default Profile;
-

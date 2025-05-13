@@ -25,7 +25,6 @@ function Login({ setUser }) {
       });
 
       const data = await response.json();
-
       if (response.ok) {
         const first = data.user.firstName || '';
         const last = data.user.lastName || '';
@@ -37,17 +36,31 @@ function Login({ setUser }) {
           firstName: data.user.firstName,
           lastName: data.user.lastName,
           email: data.user.email,
-          color: data.user.color,          // ✅ сохраняем цвет
-          paidCourses: []                  // ✅ если ты используешь это поле
+          color: data.user.color,
+          createdAt: data.user.createdAt, // ✅ добавлено!
+          paidCourses: [],
+          lastLogin: new Date().toISOString()
         };
 
+
+        // Если есть avatarImage, добавим полный путь
+        if (data.user.avatarImage) {
+          updatedUser.avatarImage = data.user.avatarImage.startsWith('http')
+            ? data.user.avatarImage
+            : `http://localhost:5001${data.user.avatarImage}`;
+        } else {
+          updatedUser.avatarImage = null;
+        }
+
         localStorage.setItem('user', JSON.stringify(updatedUser));
+        localStorage.setItem('userFromServer', JSON.stringify(updatedUser));
+
         setUser(updatedUser);
         navigate('/courses');
-      }
-      else {
+      } else {
         setError(data.message);
       }
+
     } catch (err) {
       setError('Ошибка подключения к серверу');
       console.error(err);

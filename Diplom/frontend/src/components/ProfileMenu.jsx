@@ -1,10 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
 import "./ProfileMenu.css";
 import { FaUser, FaBook, FaCog, FaQuestionCircle, FaCertificate, FaSignOutAlt } from "react-icons/fa";
 
 function ProfileMenu({ user, setUser }) {
     const [open, setOpen] = useState(false);
+    const menuRef = useRef();
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -24,11 +40,22 @@ function ProfileMenu({ user, setUser }) {
     const avatarColor = user.color || "#999";
 
     return (
-        <div className="profile-menu">
+        <div className="profile-menu" ref={menuRef}>
+
             <div className="avatar-wrapper" onClick={() => setOpen(!open)}>
-                <div className="avatar-circle" style={{ backgroundColor: avatarColor }}>
-                    {initials}
+                <div
+                    className="avatar-circle"
+                    style={{
+                        backgroundColor: user.avatarImage ? 'transparent' : avatarColor,
+                        backgroundImage: user.avatarImage ? `url(${user.avatarImage})` : 'none',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                    }}
+                >
+                    {!user.avatarImage && initials}
                 </div>
+
+
             </div>
 
             {open && (

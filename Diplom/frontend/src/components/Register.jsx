@@ -40,14 +40,19 @@ function Register({ setUser }) {
                 const initials =
                     (firstName[0] || '').toUpperCase() + (lastName[0] || '').toUpperCase();
 
+                const now = new Date().toISOString();
+
                 const newUser = {
                     name: initials,
                     firstName,
                     lastName,
                     email,
                     paidCourses: [],
-                    color: randomColor // ✅ Сохраняем цвет
+                    color: randomColor,
+                    createdAt: now,     //  дата регистрации
+                    lastLogin: now      //  первый вход
                 };
+
 
                 localStorage.setItem("user", JSON.stringify(newUser));
                 setUser(newUser);

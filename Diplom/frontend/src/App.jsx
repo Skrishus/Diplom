@@ -26,13 +26,22 @@ function App() {
     <>
       <nav className="navbar">
         <h2>
-          <Link to="/" className="logo-link">AgroInnova</Link>
+          <span
+            className="logo-link"
+            onClick={() => {
+              if (user) window.location.href = "/courses";
+            }}
+            style={{ cursor: user ? "pointer" : "default" }}
+          >
+            AgroInnova
+          </span>
+
+
         </h2>
-        {user && (
-          <>
-            <ProfileMenu user={user} setUser={setUser} />
-          </>
+        {user && !["/", "/register"].includes(window.location.pathname) && (
+          <ProfileMenu user={user} setUser={setUser} />
         )}
+
       </nav>
 
       <Routes>
@@ -43,7 +52,7 @@ function App() {
         <Route path="/profile" element={<Profile user={user} />} />
         <Route path="/payment" element={<Payment user={user} setUser={setUser} />} />
         <Route path="/courses/:id" element={<CourseDetails />} />
-        <Route path="/settings" element={<SettingsPage user={user} />} /> {/* 👈 Добавлен маршрут */}
+        <Route path="/settings" element={<SettingsPage user={user} setUser={setUser} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
