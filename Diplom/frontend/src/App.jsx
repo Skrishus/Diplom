@@ -2,6 +2,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import Courses from "./pages/Courses";
+import AddCourse from "./components/AddCourse";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import ProfileMenu from "./components/ProfileMenu";
@@ -10,7 +11,10 @@ import Payment from "./pages/Payment";
 import CourseDetails from "./components/Materials";
 import NotFound from "./pages/NotFound";
 import SettingsPage from "./pages/Settings";
+import VerifyCode from './pages/VerifyCode';
 import "./index.css";
+
+
 
 function App() {
   const [user, setUser] = useState(() => JSON.parse(localStorage.getItem("user")));
@@ -53,6 +57,10 @@ function App() {
         <Route path="/payment" element={<Payment user={user} setUser={setUser} />} />
         <Route path="/courses/:id" element={<CourseDetails />} />
         <Route path="/settings" element={<SettingsPage user={user} setUser={setUser} />} />
+        <Route path="/verify-code" element={<VerifyCode setUser={setUser} />} />
+        <Route path="/admin/add-course" element={<AddCourse />} />
+
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

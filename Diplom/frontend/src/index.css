@@ -9,7 +9,9 @@ body {
   line-height: 1.6;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: #2c3e50;
   font-weight: 600;
 }
@@ -30,7 +32,6 @@ a:hover {
 }
 
 button {
-  font-family: "Inter", sans-serif;
   font-size: 16px;
   background-color: #28a745;
   color: white;
@@ -38,12 +39,17 @@ button {
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.1s ease;
+
 }
 
-button:hover {
-  background-color: #218838;
+button:active {
+  transform: scale(0.95);
+  /* добавлен эффект уменьшения при нажатии */
 }
+
+
+
 
 /* Материалы курса */
 .materials-container {
@@ -143,9 +149,10 @@ button:hover {
   background-color: #e8f5e9;
   font-weight: 600;
 }
+
 .navbar {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
   background-color: #f8f9fa;
@@ -160,4 +167,8 @@ button:hover {
 
 .navbar .profile-menu {
   margin-left: auto;
+}
+
+.logo-link {
+  color: #2e7d32 !important;
 }

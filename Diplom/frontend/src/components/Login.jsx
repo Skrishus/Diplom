@@ -7,6 +7,10 @@ function Login({ setUser }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const [show2FA, setShow2FA] = useState(false);
+  const [twoFACode, setTwoFACode] = useState('');
+
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -25,38 +29,54 @@ function Login({ setUser }) {
       });
 
       const data = await response.json();
+
       if (response.ok) {
-        const first = data.user.firstName || '';
-        const last = data.user.lastName || '';
-        const initials =
-          (first[0] || '').toUpperCase() + (last[0] || '').toUpperCase();
+        const user = data.user;
 
-        const updatedUser = {
-          name: initials,
-          firstName: data.user.firstName,
-          lastName: data.user.lastName,
-          email: data.user.email,
-          color: data.user.color,
-          createdAt: data.user.createdAt, // ✅ добавлено!
-          paidCourses: [],
-          lastLogin: new Date().toISOString()
-        };
+        if (user.is2fa_enabled) {
+          // 🔐 Отправляем 2FA код на почту
+          await fetch('http://localhost:5001/api/send-2fa-code', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: user.email }),
+          });
 
+          // ⏳ Сохраняем временно email и данные
+          localStorage.setItem('pending2faEmail', user.email);
+          localStorage.setItem('pending2faUser', JSON.stringify(user));
 
-        // Если есть avatarImage, добавим полный путь
-        if (data.user.avatarImage) {
-          updatedUser.avatarImage = data.user.avatarImage.startsWith('http')
-            ? data.user.avatarImage
-            : `http://localhost:5001${data.user.avatarImage}`;
+          // Переход на страницу ввода кода
+          navigate('/verify-code');
         } else {
-          updatedUser.avatarImage = null;
+          const initials =
+            (user.firstName[0] || '').toUpperCase() + (user.lastName[0] || '').toUpperCase();
+
+          const updatedUser = {
+            name: initials,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            color: user.color,
+            createdAt: user.createdAt,
+            paidCourses: [],
+            lastLogin: new Date().toISOString(),
+            is2fa_enabled: user.is2fa_enabled
+          };
+
+          // Добавим avatarImage
+          if (user.avatarImage) {
+            updatedUser.avatarImage = user.avatarImage.startsWith('http')
+              ? user.avatarImage
+              : `http://localhost:5001${user.avatarImage}`;
+          } else {
+            updatedUser.avatarImage = null;
+          }
+
+          localStorage.setItem('user', JSON.stringify(updatedUser));
+          localStorage.setItem('userFromServer', JSON.stringify(updatedUser));
+          setUser(updatedUser);
+          navigate('/courses');
         }
-
-        localStorage.setItem('user', JSON.stringify(updatedUser));
-        localStorage.setItem('userFromServer', JSON.stringify(updatedUser));
-
-        setUser(updatedUser);
-        navigate('/courses');
       } else {
         setError(data.message);
       }
@@ -66,6 +86,7 @@ function Login({ setUser }) {
       console.error(err);
     }
   };
+
 
   return (
     <div className="login-wrapper">

@@ -1,0 +1,158 @@
+/* Контейнер блока безопасности */
+.security-container {
+    padding: 30px;
+    background: #f3f9f6;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: auto;
+}
+
+/* Заголовок */
+.security-container h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    padding: 0 12px;
+}
+
+/* Радиокнопки + кнопка в строку */
+.twofa-toggle {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* Стиль радиокнопок */
+.twofa-toggle label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: bold;
+}
+
+/* Радиокнопка */
+.twofa-toggle input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    accent-color: green;
+}
+
+/* Кнопка "Включить 2FA" */
+.enable-btn {
+    display: inline-block;
+    padding: 6px 8px;
+    background-color: #f1fff1;
+    color: green;
+    border: 1px solid green;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
+    white-space: nowrap;
+}
+
+.enable-btn:hover {
+    background-color: #e8ffe8;
+}
+
+/* Контейнер кнопки и радио (если используется отдельно) */
+.twofa-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 16px;
+}
+
+/* Модальное окно */
+.modal {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    background: white;
+    border: 1px solid green;
+    padding: 25px;
+    z-index: 1000;
+    width: 400px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.modal input {
+    width: 80%;
+    padding: 10px;
+    margin: 15px 0;
+}
+
+.modal button {
+    padding: 10px 20px;
+    background: white;
+    border: 1px solid green;
+    color: green;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.error-message {
+    min-height: 10px;
+    font-size: 14px;
+    color: red;
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+/* Одноразовое сообщение */
+.one-time-message {
+    margin-top: 15px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 14px;
+    animation: fadeInOut 2s forwards;
+}
+
+/* Сообщение об успехе */
+.one-time-message.success {
+    background-color: #e7f9e7;
+    border: 1px solid green;
+    color: green;
+}
+
+/* Сообщение об ошибке */
+.one-time-message.error {
+    background: transparent !important;
+    border: none !important;
+    color: red;
+    padding: 0;
+}
+
+.password-error-wrapper {
+    margin-top: 8px;
+    text-align: left;
+    position: relative;
+}
+
+/* Анимация появления/исчезновения */
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    10% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+}

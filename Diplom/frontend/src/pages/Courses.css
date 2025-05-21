@@ -135,7 +135,7 @@
 
 .load-more-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     margin-top: 30px;
 }
 
