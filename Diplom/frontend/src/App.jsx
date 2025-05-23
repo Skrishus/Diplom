@@ -13,6 +13,8 @@ import NotFound from "./pages/NotFound";
 import SettingsPage from "./pages/Settings";
 import VerifyCode from './pages/VerifyCode';
 import "./index.css";
+import Help from "./pages/Help";
+
 
 
 
@@ -59,6 +61,7 @@ function App() {
         <Route path="/settings" element={<SettingsPage user={user} setUser={setUser} />} />
         <Route path="/verify-code" element={<VerifyCode setUser={setUser} />} />
         <Route path="/admin/add-course" element={<AddCourse />} />
+        <Route path="/help" element={<Help />} />
 
 
         <Route path="*" element={<NotFound />} />
